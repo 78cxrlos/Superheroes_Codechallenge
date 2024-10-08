@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_marshmallow import Marshmallow
 
 # Initialize app
@@ -12,6 +13,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize database and Marshmallow
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
+migrate = Migrate(app, db)
 
 # Models
 
@@ -131,4 +133,4 @@ def create_hero_power():
 
 # Main function to run the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5555)
